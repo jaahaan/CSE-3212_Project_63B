@@ -44,25 +44,38 @@ class HomePage extends StatelessWidget {
         ],
       ),
 
-      body: Column(
-        children: [
-          Text("Hello 63b", style: TextStyle(fontSize: 30)),
-          Text("Welcome to our class.."),
-          Container(
-            height: 300,
-            width: 300,
-            alignment: Alignment.center,
-            padding: EdgeInsets.all(20),
-            margin: EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Colors.pinkAccent[100],
-              border: Border.all(color: Colors.tealAccent, width: 5),
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              // shape: BoxShape.circle,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text("Hello 63b", style: TextStyle(fontSize: 30)),
+            Text("Welcome to our class.."),
+
+            SizedBox(
+              height: 200,
+              width: 200,
+              child: Card(
+                color: Colors.tealAccent,
+                child: Center(child: Image.asset("assets/images/flutter.png")),
+              ),
             ),
-            child: Text("I am container!!"),
-          ),
-        ],
+            Container(
+              height: 300,
+              width: 300,
+              alignment: Alignment.center,
+              padding: EdgeInsets.all(20),
+              margin: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.pinkAccent[100],
+                border: Border.all(color: Colors.tealAccent, width: 5),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                // shape: BoxShape.circle,
+              ),
+              child: Image.network(
+                "https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=1024x1024&w=is&k=20&c=ATqBHzO_cgsU8v6plHxVHTgE8zgK0BfEGzixY6JYg-c=",
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
