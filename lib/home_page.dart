@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_63b/converter_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -41,6 +42,21 @@ class HomePage extends StatelessWidget {
             title: Text("ProfilePage"),
             onTap: () {},
           ),
+          ListTile(
+            leading: Icon(Icons.swap_horiz),
+            title: Text("ConverterPage"),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ConverterPage();
+                  },
+                ),
+              );
+            },
+          ),
         ],
       ),
 
@@ -49,7 +65,42 @@ class HomePage extends StatelessWidget {
           children: [
             Text("Hello 63b", style: TextStyle(fontSize: 30)),
             Text("Welcome to our class.."),
-
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ConverterPage();
+                          },
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 238, 114, 156),
+                      foregroundColor: Colors.white,
+                    ),
+                    child: Text("Converter Page"),
+                  ),
+                  SizedBox(width: 20),
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: Text("OutlinedButton"),
+                  ),
+                  SizedBox(width: 20),
+                  TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(side: BorderSide()),
+                    child: Text("TextButton"),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 200,
               width: 200,
