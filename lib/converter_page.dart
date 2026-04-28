@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_63b/home_page.dart';
+import 'package:project_63b/widget/input_field.dart';
 
 class ConverterPage extends StatefulWidget {
   const ConverterPage({super.key});
@@ -11,6 +13,8 @@ class ConverterPage extends StatefulWidget {
 
 class _ConverterPageState extends State<ConverterPage> {
   TextEditingController controller = TextEditingController();
+  double result = 0;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,26 +34,54 @@ class _ConverterPageState extends State<ConverterPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Form(
-                    child: TextFormField(
-                      controller: controller,
-                      keyboardType: TextInputType.numberWithOptions(
-                        decimal: true,
-                      ),
-                      validator: (value) {
-                        if (value == null) {
-                          return "Field cannot be empty!!";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.monetization_on),
-                        hintText: "Enter Amount",
-                        labelText: "Amount",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                    key: _formKey,
+                    // autovalidateMode: AutovalidateMode.onUserInteraction,
+                    child: Column(
+                      children: [
+                        InputField(
+                          controller: controller,
+                          keyboardType: TextInputType.numberWithOptions(
+                            decimal: true,
+                          ),
+                          validator: (value) {
+                            if (controller.text.isEmpty) {
+                              return "Field cannot be empty!!";
+                            }
+                            return null;
+                          },
+                          labelText: "Amount",
+                          hintText: "Enter Amount",
+                          prefixIcon: Icon(Icons.monetization_on),
                         ),
-                      ),
+                      ],
                     ),
+                  ),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        if (_formKey.currentState!.validate()) {
+                          result = double.parse(controller.text) * 122.95;
+                        }
+                      });
+                    },
+                    child: Text("Convert"),
+                  ),
+                  SizedBox(height: 10),
+                  Text("BDT: $result"),
+
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return HomePage();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text("Homepage"),
                   ),
                 ],
               ),
